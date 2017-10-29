@@ -1,4 +1,4 @@
-output "vpc_ic" {
+output "vpc_id" {
   value = "${aws_vpc.default.id}"
 }
 
