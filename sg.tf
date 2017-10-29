@@ -1,5 +1,6 @@
 resource "aws_security_group" "allow_egress" {
-  name = "allow_egress"
+  vpc_id = "${aws_vpc.default.id}"
+  name   = "allow_egress"
 }
 
 resource "aws_security_group_rule" "allow_egress" {
@@ -12,7 +13,8 @@ resource "aws_security_group_rule" "allow_egress" {
 }
 
 resource "aws_security_group" "allow_22" {
-  name = "allow_22"
+  vpc_id = "${aws_vpc.default.id}"
+  name   = "allow_22"
 }
 
 resource "aws_security_group_rule" "allow_22" {
@@ -25,7 +27,8 @@ resource "aws_security_group_rule" "allow_22" {
 }
 
 resource "aws_security_group" "allow_80" {
-  name = "allow_80"
+  vpc_id = "${aws_vpc.default.id}"
+  name   = "allow_80"
 }
 
 resource "aws_security_group_rule" "allow_80" {
