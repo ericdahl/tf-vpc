@@ -45,4 +45,3 @@ output "sg_allow_8080" {
 output "sg_allow_vpc" {
   value = "${aws_security_group.allow_vpc.id}"
 }
-
