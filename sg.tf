@@ -40,6 +40,20 @@ resource "aws_security_group_rule" "allow_80" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
+resource "aws_security_group" "allow_8080" {
+  vpc_id = "${aws_vpc.default.id}"
+  name   = "allow_8080"
+}
+
+resource "aws_security_group_rule" "allow_8080" {
+  security_group_id = "${aws_security_group.allow_8080.id}"
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
 resource "aws_security_group" "allow_vpc" {
   vpc_id = "${aws_vpc.default.id}"
   name   = "allow_vpc"

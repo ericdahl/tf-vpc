@@ -38,6 +38,10 @@ output "sg_allow_80" {
   value = "${aws_security_group.allow_80.id}"
 }
 
+output "sg_allow_8080" {
+  value = "${aws_security_group.allow_8080.id}"
+}
+
 output "sg_allow_vpc" {
   value = "${aws_security_group.allow_vpc.id}"
 }
