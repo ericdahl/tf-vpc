@@ -23,7 +23,7 @@ resource "aws_security_group_rule" "allow_22" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["${var.admin_ip_cidr}"]
 }
 
 resource "aws_security_group" "allow_80" {
