@@ -128,3 +128,27 @@ resource "aws_nat_gateway" "default" {
   allocation_id = "${aws_eip.nat_gateway.id}"
   subnet_id     = "${aws_subnet.public1.id}"
 }
+
+resource "aws_vpc_endpoint" "s3" {
+  count = "${var.enable_endpoint_s3 == "true" ? 1 : 0}"
+
+  route_table_ids = [
+    "${aws_route_table.default.id}",
+    "${aws_route_table.private.id}"
+  ]
+
+  vpc_id       = "${aws_vpc.default.id}"
+  service_name = "com.amazonaws.us-east-1.s3"
+}
+
+resource "aws_vpc_endpoint" "dynamo" {
+  count = "${var.enable_endpoint_dynamo == "true" ? 1 : 0}"
+
+  route_table_ids = [
+    "${aws_route_table.default.id}",
+    "${aws_route_table.private.id}"
+  ]
+
+  vpc_id       = "${aws_vpc.default.id}"
+  service_name = "com.amazonaws.us-east-1.dynamodb"
+}
