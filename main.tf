@@ -1,5 +1,10 @@
 resource "aws_vpc" "default" {
   cidr_block = "10.0.0.0/16"
+
+  tags = "${merge(
+    var.tags,
+    map("Name", "tf-vpc")
+  )}"
 }
 
 resource "aws_subnet" "public1" {
@@ -9,9 +14,11 @@ resource "aws_subnet" "public1" {
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
 
-  tags {
-    Name = "public1"
-  }
+  tags = "${merge(
+    var.tags,
+    var.public_subnet_tags,
+    map("Name", "public1")
+  )}"
 }
 
 resource "aws_subnet" "public2" {
@@ -20,9 +27,11 @@ resource "aws_subnet" "public2" {
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
 
-  tags {
-    Name = "public2"
-  }
+  tags = "${merge(
+    var.tags,
+    var.public_subnet_tags,
+    map("Name", "public2")
+  )}"
 }
 
 resource "aws_subnet" "public3" {
@@ -31,9 +40,11 @@ resource "aws_subnet" "public3" {
   availability_zone       = "us-east-1c"
   map_public_ip_on_launch = true
 
-  tags {
-    Name = "public3"
-  }
+  tags = "${merge(
+    var.tags,
+    var.public_subnet_tags,
+    map("Name", "public3")
+  )}"
 }
 
 resource "aws_subnet" "private1" {
@@ -41,9 +52,11 @@ resource "aws_subnet" "private1" {
   cidr_block        = "10.0.101.0/24"
   availability_zone = "us-east-1a"
 
-  tags {
-    Name = "private1"
-  }
+  tags = "${merge(
+    var.tags,
+    var.private_subnet_tags,
+    map("Name", "private1")
+  )}"
 }
 
 resource "aws_subnet" "private2" {
@@ -51,9 +64,11 @@ resource "aws_subnet" "private2" {
   cidr_block        = "10.0.102.0/24"
   availability_zone = "us-east-1b"
 
-  tags {
-    Name = "private2"
-  }
+  tags = "${merge(
+    var.tags,
+    var.private_subnet_tags,
+    map("Name", "private2")
+  )}"
 }
 
 resource "aws_subnet" "private3" {
@@ -61,9 +76,11 @@ resource "aws_subnet" "private3" {
   cidr_block        = "10.0.103.0/24"
   availability_zone = "us-east-1c"
 
-  tags {
-    Name = "private3"
-  }
+  tags = "${merge(
+    var.tags,
+    var.private_subnet_tags,
+    map("Name", "private3")
+  )}"
 }
 
 resource "aws_internet_gateway" "default" {
