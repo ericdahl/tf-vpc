@@ -5,6 +5,9 @@ resource "aws_vpc" "default" {
     var.tags,
     map("Name", "tf-vpc")
   )}"
+
+  enable_dns_hostnames = true
+  enable_dns_support = true
 }
 
 resource "aws_subnet" "public1" {
