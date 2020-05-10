@@ -11,17 +11,18 @@ variable "enable_endpoint_dynamo" {
 }
 
 variable "tags" {
-  type = "map"
+  type        = map(string)
   description = "map of tags to apply to all created resources"
-  default = {}
+  default     = {}
 }
 
 variable "private_subnet_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "public_subnet_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
+
